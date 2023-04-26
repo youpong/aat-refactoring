@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+
 import { User } from './user';
 import { UserListComponent } from './user-list/user-list.component';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'my-app',
@@ -12,12 +13,11 @@ import { UserListComponent } from './user-list/user-list.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private readonly http = inject(HttpClient);
+  private readonly userService = inject(UserService);
 
   users: User[] = [];
 
   ngOnInit(): void {
-    this.http.get<{ data: User[] }>('https://reqres.in/api/users')
-    .subscribe(resp => this.users = resp.data);
+    this.userService.getUsers().subscribe(users => this.users = users);
   }
 }
