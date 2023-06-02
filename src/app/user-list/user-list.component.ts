@@ -9,7 +9,6 @@ import { User } from '../user';
   standalone: true,
   imports: [CommonModule, UserListItemComponent],
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent {
   @Input()
